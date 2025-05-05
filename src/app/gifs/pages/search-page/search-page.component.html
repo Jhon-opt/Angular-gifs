@@ -1,0 +1,23 @@
+
+
+<h2 class="text-2xl font-bold mt-5">Buscar gifs</h2>
+<h3 class="text-sm text-gray-500">Buscar gifs por nombre,descripcion o tags</h3>
+
+
+<section class="flex flex-col gap-4 ">
+  <input
+    type="text"
+    placeholder="Buscar gifs"
+    class="border border-gray-300 rounded-md p-2 mt-2"
+    (keyup.enter)="onSearch(txtSearch.value)"
+    #txtSearch
+    >
+
+</section>
+
+
+<section class="py-5">
+  <gif-list [gifs]="gifs()"/>
+</section>
+
+
