@@ -23,6 +23,17 @@ export class GifsService {
   private http = inject(HttpClient);
   trendingGifs = signal<Gif[]>([]);
   trendingGifsLoading =signal(true);
+//logica para dividir los gifs en grupos de 3 para el masonry
+trendingGifGroup = computed<Gif[][]>(() => {
+  const groups = [];
+  const gifs = this.trendingGifs(); // Obtenemos el array de GIFs original
+  // Iteramos sobre el array original (`gifs`), no sobre `trendingGifGroup`
+  for (let index = 0; index < gifs.length; index += 3) {
+    groups.push(gifs.slice(index, index + 3)); // Agrupamos de 3 en 3
+  }
+  console.log(groups); // Debug opcional
+  return groups;
+});
 
   searchHistory = signal<Record<string, Gif[]>>(loadfromLocalStorage());
   serachHistoryKeys = computed(()=> Object.keys(this.searchHistory()));
